@@ -1,8 +1,24 @@
 let elForm = document.querySelector('.js-form');
 let elInput = document.querySelector('.js-input');
 let elList = document.querySelector('.js-list');
+let elSpeak = document.querySelector('.speak')
 
 let array = [];
+const speak = new webkitSpeechRecognition();
+	  
+
+speak.onresult = function (evt) {
+	const result = evt.results[0][0].transcript;
+	console.log(result);
+	elInput.value = result;
+};
+
+elSpeak.addEventListener('click', function () {
+	speak.start();
+	
+	
+});
+
 elForm.addEventListener('submit', function (evt) {
 	evt.preventDefault();
 	array.push({
